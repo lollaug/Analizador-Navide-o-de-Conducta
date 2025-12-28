@@ -5,7 +5,7 @@ import streamlit as st
 st.set_page_config(page_title="🎄 Analizador de Conducta Navideño 🎅🏼", page_icon="🎁")
 
 # --- MENSAJE DE BIENVENIDA ESPECIAL CON IMAGEN ---
-st.image("https://i.pinimg.com/736x/47/7a/83/477a8332d91122c2ab1c69306687151c.jpg", use_column_width=True) # Imagen de Santa Claus
+st.image("https://i.pinimg.com/736x/47/7a/83/477a8332d91122c2ab1c69306687151c.jpg", height: 50px, width: 25px, use_column_width=True) # Imagen de Santa Claus
 st.markdown(
     """
     <div style="text-align: center; background-color: #fce4ec; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
@@ -13,7 +13,7 @@ st.markdown(
             🎅🏼 ¡Bienvenidos al Analizador de Conducta de Navidad! 🤨
         </h1>
         <p style="color: #424242; font-size: 1.1em;">
-            Vamos a ver si te portaste bien este año, para recibir tu regalo 🎁.
+            Vamos a ver si te portaste bien este año, para recibir tu regalo 🎁. <br>
             ¡Responde con honestidad!
         </p>
     </div>
@@ -88,4 +88,5 @@ if st.button("✨ ¡VERIFICAR MI CONDUCTA! ✨", use_container_width=True, type=
             st.error(f"¡Oh!, ¿Qué pasó {nombre}? **¡Parece que hay algunas cositas que mejorar!**")
             st.write(f"Con {puntos_positivos} respuestas positivas, aún puedes pulir tu conducta.")
             st.write("Pero no te preocupes, ¡Santa es generoso! Igual te espera un **regalito pequeño** para que te animes a portarte aún mejor el próximo año. 🤏🏼🎄")
+
 
