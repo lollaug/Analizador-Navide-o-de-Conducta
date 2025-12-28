@@ -5,16 +5,15 @@ import streamlit as st
 st.set_page_config(page_title="🎄 Analizador de Conducta Navideño 🎅🏼", page_icon="🎁")
 
 # --- MENSAJE DE BIENVENIDA ESPECIAL CON IMAGEN ---
-st.image("https://i.imgur.com/2s4fQ61.png", use_column_width=True) # Imagen de Santa Claus
+st.image("https://i.pinimg.com/736x/47/7a/83/477a8332d91122c2ab1c69306687151c.jpg", use_column_width=True) # Imagen de Santa Claus
 st.markdown(
     """
     <div style="text-align: center; background-color: #fce4ec; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
-        <h1 style="color: #d32f2f; font-family: 'Comic Sans MS', cursive;">
-            🎅🏼 ¡Bienvenidos al Taller de Verificación de Conducta de Santa! 🤨
+        <h1 style="color: #d32f2f; font-family: 'Helvetica', bold;">
+            🎅🏼 ¡Bienvenidos al Analizador de Conducta de Navidad! 🤨
         </h1>
         <p style="color: #424242; font-size: 1.1em;">
-            Elfo Jefe "Cascabel" ha activado el sistema...
-            Vamos a descubrir si tu nombre está en la Lista de Buenos para recibir tu gran regalo 🎁.
+            Vamos a ver si te portaste bien este año, para recibir tu regalo 🎁.
             ¡Responde con honestidad!
         </p>
     </div>
@@ -66,7 +65,7 @@ for i, p in enumerate(preguntas):
 st.divider()
 
 # --- Botón para analizar la conducta ---
-if st.button("✨ ¡VERIFICAR MI CONDUCTA PARA SANTA! ✨", use_container_width=True, type="primary"):
+if st.button("✨ ¡VERIFICAR MI CONDUCTA! ✨", use_container_width=True, type="primary"):
     # Validar que los datos personales estén completos
     if not nombre.strip() or not edad.strip() or not grado.strip(): # .strip() para ignorar espacios en blanco
         st.warning("⚠️ ¡Ups! Santa necesita todos tus datos (nombre, edad, grado) para revisar tu lista.")
@@ -82,10 +81,11 @@ if st.button("✨ ¡VERIFICAR MI CONDUCTA PARA SANTA! ✨", use_container_width=
         # Lógica de decisión: Más del 60% de "Sí" para el regalo grande
         if porcentaje_positivo >= 60: 
             st.balloons() # ¡Efecto de globos en la pantalla!
-            st.success(f"¡{nombre}, elfo jefe 'Cascabel' te confirma: **¡Estás en la Lista de Buenos!**")
+            st.success(f"¡Felicitaciones {nombre}, **¡Estás en la Lista de Buenos!**")
             st.write(f"Con {puntos_positivos} respuestas positivas, a tus {edad} años y en {grado}, ¡te mereces un **GRAN REGALO** esta Navidad! 🎁✨")
             st.snow() # Efecto de nieve
         else:
-            st.error(f"¡Oh, {nombre}! El elfo jefe 'Cascabel' te informa: **¡Parece que hay algunas cositas que mejorar!**")
+            st.error(f"¡Oh!, ¿Qué pasó {nombre}? **¡Parece que hay algunas cositas que mejorar!**")
             st.write(f"Con {puntos_positivos} respuestas positivas, aún puedes pulir tu conducta.")
             st.write("Pero no te preocupes, ¡Santa es generoso! Igual te espera un **regalito pequeño** para que te animes a portarte aún mejor el próximo año. 🤏🏼🎄")
+
