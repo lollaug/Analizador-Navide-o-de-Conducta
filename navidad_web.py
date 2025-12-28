@@ -6,7 +6,13 @@ st.set_page_config(page_title="🎄 Analizador de Conducta Navideño 🎅🏼", 
 
 # --- MENSAJE DE BIENVENIDA ESPECIAL CON IMAGEN ---
 # Cambia el 300 por el número que prefieras (más pequeño = menos píxeles)
-st.image("https://i.pinimg.com/736x/47/7a/83/477a8332d91122c2ab1c69306687151c.jpg", width=300) # Imagen de Santa Claus
+# Creamos 3 columnas. Los números [1, 2, 1] definen el ancho proporcional.
+# La columna del medio (2) es el doble de ancha que las de los lados (1).
+col_izq, col_centro, col_der = st.columns([1, 2, 1])
+
+with col_centro:
+    # Aquí la imagen se adapta al ancho de la columna central
+    st.image("https://i.pinimg.com/736x/47/7a/83/477a8332d91122c2ab1c69306687151c.jpg", use_container_width=True)
 st.markdown(
     """
     <div style="text-align: center; background-color: #fce4ec; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
@@ -89,6 +95,7 @@ if st.button("✨ ¡VERIFICAR MI CONDUCTA! ✨", use_container_width=True, type=
             st.error(f"¡Oh!, ¿Qué pasó {nombre}? **¡Parece que hay algunas cositas que mejorar!**")
             st.write(f"Con {puntos_positivos} respuestas positivas, aún puedes pulir tu conducta.")
             st.write("Pero no te preocupes, ¡Santa es generoso! Igual te espera un **regalito pequeño** para que te animes a portarte aún mejor el próximo año. 🤏🏼🎄")
+
 
 
 
