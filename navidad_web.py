@@ -32,7 +32,9 @@ preguntas = [
     "¿Te lavaste los dientes todas las noches?",
     "¿Hablaste con respeto y sin decir malas palabras?",
     "¿Compartiste tus juguetes con otros niños?",
-    "¿Fuiste amable con los animales?"
+    "¿Fuiste amable con los animales?",
+    "¿Fuiste amable con los demas?",
+    "¿Comiste vegetales?"
 ]
 
 # Creamos una lista para guardar las respuestas
@@ -46,7 +48,7 @@ for i, p in enumerate(preguntas):
 st.divider()
 
 # --- Botón de Resultado ---
-if st.button("🎁 ¡VER MI VERDICTO! 🎁"):
+if st.button("🎁 ¡VER MI RESULTADO! 🎁"):
     if not nombre or not edad or not grado:
         st.warning("⚠️ ¡Espera! Santa necesita saber tu nombre, edad y grado.")
     else:
@@ -61,4 +63,5 @@ if st.button("🎁 ¡VER MI VERDICTO! 🎁"):
         else:
             st.error(f"🤨 ¿Qué pasó, {nombre}?")
             st.write("Parece que hay algunas cositas que mejorar para el próximo año.")
+
             st.write("### Igual te toca un regalito pequeño. 🤏🏼")
