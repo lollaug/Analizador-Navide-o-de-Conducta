@@ -1,67 +1,91 @@
+
 import streamlit as st
 
-# Configuración de la página
-st.set_page_config(page_title="Analizador Navideño", page_icon="🎅🏼")
+# --- Configuración de la página (¡Importante para el título de la pestaña del navegador!) ---
+st.set_page_config(page_title="🎄 Analizador de Conducta Navideño 🎅🏼", page_icon="🎁")
 
-# Título con estilo
-st.title("🎅🏼 ¡Bienvenidos al analizador de conducta! 🤨")
-st.markdown("### Vamos a ver si te portaste bien este año para recibir tu regalo 🎁")
+# --- MENSAJE DE BIENVENIDA ESPECIAL CON IMAGEN ---
+st.image("https://i.imgur.com/2s4fQ61.png", use_column_width=True) # Imagen de Santa Claus
+st.markdown(
+    """
+    <div style="text-align: center; background-color: #fce4ec; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+        <h1 style="color: #d32f2f; font-family: 'Comic Sans MS', cursive;">
+            🎅🏼 ¡Bienvenidos al Taller de Verificación de Conducta de Santa! 🤨
+        </h1>
+        <p style="color: #424242; font-size: 1.1em;">
+            Elfo Jefe "Cascabel" ha activado el sistema...
+            Vamos a descubrir si tu nombre está en la Lista de Buenos para recibir tu gran regalo 🎁.
+            ¡Responde con honestidad!
+        </p>
+    </div>
+    """, 
+    unsafe_allow_html=True
+)
+
+st.divider() # Una línea decorativa para separar
 
 # --- Sección de Datos Personales ---
-st.subheader("Tus Datos 👤")
-col1, col2 = st.columns(2)
+st.subheader("📝 Cuéntanos un poco sobre ti:")
+col1, col2 = st.columns(2) # Divide la pantalla en dos columnas
 
 with col1:
-    nombre = st.text_input("¿Cómo te llamas?")
-    edad = st.text_input("¿Cuántos años tienes?")
+    nombre = st.text_input("¿Cuál es tu nombre? 👤")
+    edad = st.text_input("¿Cuántos años tienes? 🎂")
 
 with col2:
-    grado = st.text_input("¿A qué grado vas?")
-
-st.divider() # Línea separadora
-
-# --- Sección de Preguntas ---
-st.subheader("Análisis de conducta 🔍")
-st.write("Responde con sinceridad:")
-
-preguntas = [
-    "¿Te portaste muy bien con tu mamá y tu papá este año?",
-    "¿Ordenaste tu habitación?",
-    "¿Ayudaste con las tareas de la casa?",
-    "¿Hiciste la tarea de la Escuela?",
-    "¿Te lavaste los dientes todas las noches?",
-    "¿Hablaste con respeto y sin decir malas palabras?",
-    "¿Compartiste tus juguetes con otros niños?",
-    "¿Fuiste amable con los animales?",
-    "¿Fuiste amable con los demas?",
-    "¿Comiste vegetales?"
-]
-
-# Creamos una lista para guardar las respuestas
-respuestas = []
-
-for i, p in enumerate(preguntas):
-    # Usamos radio botones horizontales para que se vea más limpio
-    opcion = st.radio(f"{i+1}. {p}", ["Sí ✅", "No ❌"], horizontal=True, key=f"p{i}")
-    respuestas.append(opcion)
+    grado = st.text_input("¿A qué grado de la escuela vas? 📚")
 
 st.divider()
 
-# --- Botón de Resultado ---
-if st.button("🎁 ¡VER MI RESULTADO! 🎁"):
-    if not nombre or not edad or not grado:
-        st.warning("⚠️ ¡Espera! Santa necesita saber tu nombre, edad y grado.")
-    else:
-        # Contamos cuántos "Sí" hay
-        puntos_si = respuestas.count("Sí ✅")
-        
-        if puntos_si >= 5: # Si tiene 5 o más respuestas positivas
-            st.balloons() # ¡Efecto de globos en toda la pantalla!
-            st.success(f"🎉🥳🎁 ¡Felicitaciones {nombre}!")
-            st.write(f"A tus {edad} años, has demostrado ser una excelente persona en {grado}.")
-            st.write("### ¡Te has portado muy bien y te mereces un gran regalo!")
-        else:
-            st.error(f"🤨 ¿Qué pasó, {nombre}?")
-            st.write("Parece que hay algunas cositas que mejorar para el próximo año.")
+# --- Sección de Preguntas ---
+st.subheader("✅ Hora de revisar tu año:")
+st.write("¡Responde **'Sí'** o **'No'** a cada pregunta para ayudar a Santa!")
 
-            st.write("### Igual te toca un regalito pequeño. 🤏🏼")
+preguntas = [
+    "¿Te portaste muy bien con tu mamá y tu papá este año?",
+    "¿Ordenaste tu habitación sin que te lo dijeran?",
+    "¿Ayudaste con las tareas de la casa cuando te lo pidieron?",
+    "¿Hiciste la tarea de la Escuela siempre a tiempo?",
+    "¿Te lavaste los dientes todas las noches sin que te recordaran?",
+    "¿Hablaste con respeto y sin decir malas palabras a nadie?",
+    "¿Compartiste tus juguetes con otros niños o hermanos?",
+    "¿Fuiste amable y cuidadoso con los animales?",
+    "¿Fuiste amable con los demas?",
+    "¿Comiste frutas y verduras?"
+]
+
+# Creamos una lista para guardar las respuestas de los botones de radio
+respuestas_radio = []
+
+for i, p in enumerate(preguntas):
+    # Usamos st.radio para cada pregunta, con opciones Sí/No
+    # La clave 'key' es importante para que Streamlit sepa qué botón es cuál
+    opcion = st.radio(f"{i+1}. {p}", ["Sí ✅", "No ❌"], horizontal=True, key=f"pregunta_{i}")
+    respuestas_radio.append(opcion)
+
+st.divider()
+
+# --- Botón para analizar la conducta ---
+if st.button("✨ ¡VERIFICAR MI CONDUCTA PARA SANTA! ✨", use_container_width=True, type="primary"):
+    # Validar que los datos personales estén completos
+    if not nombre.strip() or not edad.strip() or not grado.strip(): # .strip() para ignorar espacios en blanco
+        st.warning("⚠️ ¡Ups! Santa necesita todos tus datos (nombre, edad, grado) para revisar tu lista.")
+    else:
+        puntos_positivos = respuestas_radio.count("Sí ✅")
+        total_preguntas = len(preguntas)
+        
+        # Calcular el porcentaje de respuestas positivas
+        porcentaje_positivo = (puntos_positivos / total_preguntas) * 100
+
+        st.subheader("🎉 ¡RESULTADO FINAL DE SANTA! 🎉")
+
+        # Lógica de decisión: Más del 60% de "Sí" para el regalo grande
+        if porcentaje_positivo >= 60: 
+            st.balloons() # ¡Efecto de globos en la pantalla!
+            st.success(f"¡{nombre}, elfo jefe 'Cascabel' te confirma: **¡Estás en la Lista de Buenos!**")
+            st.write(f"Con {puntos_positivos} respuestas positivas, a tus {edad} años y en {grado}, ¡te mereces un **GRAN REGALO** esta Navidad! 🎁✨")
+            st.snow() # Efecto de nieve
+        else:
+            st.error(f"¡Oh, {nombre}! El elfo jefe 'Cascabel' te informa: **¡Parece que hay algunas cositas que mejorar!**")
+            st.write(f"Con {puntos_positivos} respuestas positivas, aún puedes pulir tu conducta.")
+            st.write("Pero no te preocupes, ¡Santa es generoso! Igual te espera un **regalito pequeño** para que te animes a portarte aún mejor el próximo año. 🤏🏼🎄")
