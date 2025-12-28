@@ -19,7 +19,7 @@ st.markdown(
         <h1 style="color: #d32f2f; font-family: 'Helvetica', bold;">
             🎅🏼 ¡Bienvenidos al Analizador de Conducta de Navidad! 🤨
         </h1>
-        <p style="color: #424242; font-size: 1.1em;">
+        <p style="color: #424242; font-size: 1.0em;">
             Vamos a ver si te portaste bien este año, para recibir tu regalo 🎁. <br>
             ¡Responde con honestidad!
         </p>
@@ -31,7 +31,7 @@ st.markdown(
 st.divider() # Una línea decorativa para separar
 
 # --- Sección de Datos Personales ---
-st.subheader("📝 Cuéntanos un poco sobre ti:")
+st.subheader("📝 Cuéntanos sobre ti:")
 col1, col2 = st.columns(2) # Divide la pantalla en dos columnas
 
 with col1:
@@ -44,7 +44,7 @@ with col2:
 st.divider()
 
 # --- Sección de Preguntas ---
-st.subheader("✅ Hora de revisar tu año:")
+st.subheader("👀 Hora de revisar tu año:")
 st.write("¡Responde **'Sí'** o **'No'** a cada pregunta para ayudar a Santa!")
 
 preguntas = [
@@ -95,6 +95,7 @@ if st.button("✨ ¡VERIFICAR MI CONDUCTA! ✨", use_container_width=True, type=
             st.error(f"¡Oh!, ¿Qué pasó {nombre}? **¡Parece que hay algunas cositas que mejorar!**")
             st.write(f"Con {puntos_positivos} respuestas positivas, aún puedes pulir tu conducta.")
             st.write("Pero no te preocupes, ¡Santa es generoso! Igual te espera un **regalito pequeño** para que te animes a portarte aún mejor el próximo año. 🤏🏼🎄")
+
 
 
 
